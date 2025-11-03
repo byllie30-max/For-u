@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Someone I Love</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7e8ff, #ffe6f0, #e0f7ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: background 1s ease;
+  position: relative;
+  padding: 24px;
+}
+
+/* Partikel kuning */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #fff7ae, #ffd84d);
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: floatParticle 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatParticle {
+  0% { transform: translateY(0) scale(1); opacity: 0.9; }
+  100% { transform: translateY(-110vh) scale(0.6); opacity: 0; }
+}
+
+/* Main Page */
+#mainContent {
+  display: block;
+  text-align: center;
+  color: #333;
+  animation: fadeIn 1.2s ease;
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.6);
+  padding: 28px 36px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  max-width: 860px;
+  width: 100%;
+  backdrop-filter: blur(6px);
+}
+
+h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+p.lead {
+  font-size: 1.05rem;
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #444;
+}
+
+.note {
+  display: block;
+  margin-top: 14px;
+  font-style: italic;
+  color: #6b6b6b;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  font-size: 26px;
+  animation: floatUp 5s linear infinite;
+  opacity: 0.85;
+  pointer-events: none;
+  transform: translateY(0);
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes floatUp { 0% { transform: translateY(0) scale(1); opacity: 0.9; } 100% { transform: translateY(-110vh) scale(1.4); opacity: 0; } }
+
+/* Responsive */
+@media (max-width: 600px) {
+  h2 { font-size: 1.5rem; }
+  .heart { font-size: 20px; }
+  #mainContent { padding: 18px; }
+}
+
+  </style>
+</head>
+<body>
+  <!-- Main Content (no password) -->
+  <div id="mainContent" role="main" aria-labelledby="title">
+    <h2 id="title">Untuk Mu 💖</h2>
+    <p class="lead">
+      Sehat-sehat selalu, wanita favorit yang jarang mandi, sering hilang-hilang, mod-mod'tan, dan jarang kasih pap.
+    </p>
+    <p class="note">
+      Sabar-sabar sayang — pasti nanti kita ketemu kok. Fokus saja kuliahmu, jangan liat yang lain. Gak usah takut ditinggalin atau ragu kalau gak bisa sampai akhir perjalanan. Gua tanggung jawab sampai akhir, gw pertahanin sampai akhir, walau berat bisa kok sayang — jadi gak usah ragu, gw ada dan gak bakal ninggalin, semangat yah sayang.
+    </p>
+    <p class="note"><strong>for you forever from now on, to me forever for me. <br>28 Juni 2025</strong></p>
+  </div>  <script>
+    // Mulai animasi ketika halaman siap
+    function spawnHearts() {
+      // buat beberapa hati awal
+      for (let i = 0; i < 6; i++) createHeart();
+      // lalu terus spawn
+      setInterval(createHeart, 700);
+
+      function createHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.textContent = '💗';
+        // posisi awal random di lebar layar
+        const left = Math.random() * (window.innerWidth - 40);
+        heart.style.left = left + 'px';
+        heart.style.top = (window.innerHeight + 20) + 'px';
+        heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+        document.body.appendChild(heart);
+        // hapus setelah animasi selesai
+        setTimeout(() => heart.remove(), 9000);
+      }
+    }
+
+    function spawnParticles() {
+      // buat beberapa partikel awal
+      for (let i = 0; i < 20; i++) createParticle();
+      // lalu terus spawn
+      setInterval(createParticle, 300);
+
+      function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * window.innerWidth + 'px';
+        particle.style.top = (window.innerHeight + Math.random() * 100) + 'px';
+        particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+        particle.style.opacity = (0.3 + Math.random() * 0.9).toString();
+        document.body.appendChild(particle);
+        setTimeout(() => particle.remove(), 9000);
+      }
+    }
+
+    // start when document ready
+    window.addEventListener('DOMContentLoaded', () => {
+      spawnHearts();
+      spawnParticles();
+    });
+  </script></body>
+</html>
